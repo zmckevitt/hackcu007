@@ -12,14 +12,19 @@ def output():
 @app.route('/receiver', methods = ['GET','POST'])
 def worker():
 	# read json + reply
-	data = request.get_json()
-	result = 'peen'
-	for item in data:
-    #     pass
+    # data = request.get_json()
+    result = ''
+    if request.is_json:
+        print("is json")
+        data = request.get_json()
 
-	# 	# loop over every row
-	# 	result += str(item['make']) + '\n'
-	return result
+        for item in data:
+            result += str(item['firstname'])
+            break
+    else:
+        print(type(request))
+
+    return str(request)
 
 if __name__ == "__main__":
     # run!
