@@ -10,19 +10,19 @@
       window.onload = function() {
           // setup the button click
         document.getElementById("theButton").onclick = function() {
-            //  json_name =  String(document.getElementById("fname").value)
-                // { "firstname": String(document.getElementById("fname").value)}
+            //build json here w/ all values from the form
             //var name = document.getElementById("fname").value
-            doWork()
+            var json_dat = {title: 'peen', article: 'test'}
+            doWork(json_dat)
         };
       }
-      function doWork() {
+      function doWork(json_dat) {
           // ajax the JSON to the server
           $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "receiver",
-            data: JSON.stringify({title: 'hello', article: 'test'}),
+            data: JSON.stringify(json_dat),
             success: function (data) {
                 console.log(data.title);
                 console.log(data.article);
