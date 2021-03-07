@@ -10,7 +10,7 @@ _fname = 'out.txt'
 #add port variable
 
 def query_pipe(arg1, arg2):
-    timeoutInSeconds = 10                                                                     # Our timeout value.
+    timeoutInSeconds = 5                                                                     # Our timeout value.
     cmd   =  'python ' + python_file + ' ' + arg1 + ' ' +  arg2                              # Your desired command.
     proc  =  subprocess.Popen(cmd,shell=True)                                                # Starting main process.
     timeStarted = time.time()                                                                # Save start time.
