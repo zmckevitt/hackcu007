@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Test Site</title>
+    <link rel="shortcut icon" href="#">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script type="text/javascript">
+      // setup some JSON to use
+      window.onload = function() {
+          // setup the button click
+        document.getElementById("button1").onclick = function() {
+            //build json here w/ all values from the form
+            //var name = document.getElementById("fname").value
+            // var json_dat = {title: 'peen', article: 'test'}
+            // doWork(json_dat)
+            var name = document.forms['myform'].elements['fname'].value;
+            var lname = document.forms['myform'].elements['lname'].value;
+            var json_dat = {title: name, article: lname, time: 'week'};
+            doWork(json_dat)
+        };
+
+        document.getElementById("button2").onclick = function() {
+            //build json here w/ all values from the form
+            //var name = document.getElementById("fname").value
+            // var json_dat = {title: 'peen', article: 'test'}
+            // doWork(json_dat)
+            var name = document.forms['myform'].elements['fname'].value;
+            var lname = document.forms['myform'].elements['lname'].value;
+            var json_dat = {title: name, article: lname, time: 'month'};
+            doWork(json_dat)
+        };
+
+        document.getElementById("button3").onclick = function() {
+            //build json here w/ all values from the form
+            //var name = document.getElementById("fname").value
+            // var json_dat = {title: 'peen', article: 'test'}
+            // doWork(json_dat)
+            var name = document.forms['myform'].elements['fname'].value;
+            var lname = document.forms['myform'].elements['lname'].value;
+            var json_dat = {title: name, article: lname, time: 'year'};
+            doWork(json_dat)
+        };
+      }
+    //   function click() {
+    //     var name = document.forms['myform'].elements['fname'].value;
+    //     var json_dat = {title: name, article: 'test'}
+    //     doWork(json_dat)
+    //   }
+      function doWork(json_dat) {
+          // ajax the JSON to the server
+          $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "receiver",
+            data: JSON.stringify(json_dat),
+            success: function (data) {
+                console.log(data.title);
+                console.log(data.article);
+            },
+            dataType: "json"
+            });
+        //   $.post("receiver", json_name, function(){
+        //   });
+          // stop link reloading the page
+       event.preventDefault();
+      }
+      </script>
+</head>
+    <body>
+        This will send data using AJAX to Python:<br /><br />
+
+      <form id="myform">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br>
+      </form>
+
+      <input type="button" value="Week" id="button1">
+      <input type="button" value="Month" id="button2">
+      <input type="button" value="Year" id="button3">
+    </body>
