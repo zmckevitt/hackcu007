@@ -1,56 +1,65 @@
 #!flask/bin/python
 import sys
 from flask import Flask, render_template, request, redirect, Response
-import random, json
+import random, json, subprocess, time
+
 app = Flask(__name__, template_folder="templates")
+python_file = 'test.py'
+_fname = 'testfile.txt'
+
+#add port variable
+
+def query_pipe(arg1, arg2, arg3):
+    timeoutInSeconds = 1                                                                     # Our timeout value.
+    cmd   =  'python ' + python_file + ' ' + arg1 + ' ' +  arg2 + ' ' + arg3                 # Your desired command.
+    proc  =  subprocess.Popen(cmd,shell=True)                                                # Starting main process.
+    timeStarted = time.time()                                                                # Save start time.
+    cmdTimer     =  "sleep "+str(timeoutInSeconds)                                           # Waiting for timeout...
+    cmdKill      =  "kill "+str(proc.pid)+" 2>/dev/null"                                     # And killing process.
+    cmdTimeout   =  cmdTimer+" && "+cmdKill                                                  # Combine commands above.
+    procTimeout  =  subprocess.Popen(cmdTimeout,shell=True)                                  # Start timeout process.
+    proc.communicate()     
+
+def read_file(fname):
+    f = open("txt_files/"+fname, "r")
+    return f.readlines()
+
+def gen_kwargs(num):
+    # read file here to get data
+    arg = []
+    val = []
+    _file = read_file(_fname)
+    d = {}
+    for i in range(0,num):
+        arg.append("arg" + str(i))
+        val.append(_file[i])
+    d = {arg[i]: val[i] for i in range(num)}
+    return d
+
 
 @app.route("/")
 def output():
-	return render_template("index.html", name="Joe")
-    #return "Hello World!"
+	return render_template("index.html")
 
 @app.route('/receiver', methods = ['GET','POST'])
 def worker():
-	# read json + reply
-    # result = ''
-    # try:
-    #     data = request.get_json()
-    #     result = 'SUCCESS'
-    # except:
-    #     result = 'FAIL'
-    # if request.is_json:
-    #     print("is json")
-    #     data = request.get_json()
-
-    #     for item in data:
-    #         result += str(item['firstname'])
-    #         break
-    # else:
-    #     print(type(request))
-
-    # result = 'hello'
-    # data = request.json
-    # try: 
-    #     data = request.json
-    #     try:
-    #         json_obj = json.loads(data)
-    #         result = 'success'
-    #     except:
-    #         result = 'fail1'
-    # except:
-    #     result = 'fail'
-
-    # print(data)
-    # return result
-
     data = request.get_json()
     print(request)
-    string_dat = "fname: " + data['title'] + "lname: " + data['article'] + "time: " + data['time']
+    arg1 = data['title']
+    arg2 = data['article']
+    arg3 = data['time']
+    string_dat = "fname: " + arg1 + " lname: " + arg2 + " time: " + arg3
+    query_pipe(arg1, arg2, arg3)
     print(string_dat)
-    return string_dat
-    # data = request.json
-    # print("data is " + format(data))
-    # return redirect('localhost:5020/receiver')
+    # return string_dat
+    return redirect("/redirect")
+
+@app.route("/redirect")
+def redirected():
+    #need to read file to determine arguments
+    #call kwarg generator function
+    kwargs = gen_kwargs(3)
+    return render_template("redirect.html", **kwargs)
 
 if __name__ == "__main__":
     # run!

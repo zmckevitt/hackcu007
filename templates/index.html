@@ -9,10 +9,6 @@
       window.onload = function() {
           // setup the button click
         document.getElementById("button1").onclick = function() {
-            //build json here w/ all values from the form
-            //var name = document.getElementById("fname").value
-            // var json_dat = {title: 'peen', article: 'test'}
-            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
             var lname = document.forms['myform'].elements['lname'].value;
             var json_dat = {title: name, article: lname, time: 'week'};
@@ -20,10 +16,6 @@
         };
 
         document.getElementById("button2").onclick = function() {
-            //build json here w/ all values from the form
-            //var name = document.getElementById("fname").value
-            // var json_dat = {title: 'peen', article: 'test'}
-            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
             var lname = document.forms['myform'].elements['lname'].value;
             var json_dat = {title: name, article: lname, time: 'month'};
@@ -31,36 +23,25 @@
         };
 
         document.getElementById("button3").onclick = function() {
-            //build json here w/ all values from the form
-            //var name = document.getElementById("fname").value
-            // var json_dat = {title: 'peen', article: 'test'}
-            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
             var lname = document.forms['myform'].elements['lname'].value;
             var json_dat = {title: name, article: lname, time: 'year'};
             doWork(json_dat)
         };
       }
-    //   function click() {
-    //     var name = document.forms['myform'].elements['fname'].value;
-    //     var json_dat = {title: name, article: 'test'}
-    //     doWork(json_dat)
-    //   }
       function doWork(json_dat) {
           // ajax the JSON to the server
+
           $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "receiver",
             data: JSON.stringify(json_dat),
             success: function (data) {
-                console.log(data.title);
-                console.log(data.article);
+                document.location.href='/redirect'
             },
-            dataType: "json"
+            dataType: "html"
             });
-        //   $.post("receiver", json_name, function(){
-        //   });
           // stop link reloading the page
        event.preventDefault();
       }
@@ -79,4 +60,5 @@
       <input type="button" value="Week" id="button1">
       <input type="button" value="Month" id="button2">
       <input type="button" value="Year" id="button3">
+
     </body>
