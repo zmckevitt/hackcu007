@@ -58,10 +58,6 @@ def gen_kwargs(num):
 def output():
 	return render_template("index.html")
 
-@app.route("/new")
-def new():
-	return render_template("index1.html")
-
 @app.route('/receiver', methods = ['GET','POST'])
 def worker():
     global uname_old
@@ -76,7 +72,7 @@ def worker():
     query_pipe(arg1, arg2)
     if(arg1 != ''):
         remove_cache(arg1)
-        return redirect("/new")
+        return redirect("/home")
     else:
         uname_new = uname_old
         uname_old = uname_new
