@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder="templates")
 
 @app.route("/")
 def output():
-	return render_template("home.html", name="Joe")
+	return render_template("tentacles.html", name="Joe")
     #return "Hello World!"
 
 @app.route('/receiver', methods = ['GET','POST'])
@@ -14,7 +14,7 @@ def worker():
 
     data = request.get_json()
     # print(request)
-    string_dat = "fname: " + data['user'] + "lname: " + data['pass'] + "time: " + data['time']
+    string_dat = "fname: " + data['title'] + "lname: " + data['article'] + "time: " + data['time']
     print(string_dat)
     return string_dat
 

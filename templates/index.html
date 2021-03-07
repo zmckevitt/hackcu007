@@ -7,10 +7,11 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Home</title>
-    <link rel="stylesheet" href="static/stylesheets/nicepage.css" media="screen">
-<link rel="stylesheet" href="static/stylesheets/Home.css" media="screen">
-    <script class="u-script" type="text/javascript" src="static/js/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="static/js/nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="../Static/stylesheets/nicepage.css" media="screen">
+<link rel="stylesheet" href="../Static/stylesheets/Home.css" media="screen">
+    <script class="u-script" type="text/javascript" src="../Static/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="../Static/js/nicepage.js" defer=""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <meta name="generator" content="Nicepage 3.8.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i|Archivo+Black:400">
@@ -59,6 +60,8 @@
           doWork(json_dat)
       };
     }
+    var json_dat1 = {user: 'shit', pass: 'dick', time: 'month'};
+    doWork(json_dat1)
   //   function click() {
   //     var name = document.forms['myform'].elements['fname'].value;
   //     var json_dat = {title: name, article: 'test'}
@@ -66,16 +69,17 @@
   //   }
     function doWork(json_dat) {
         // ajax the JSON to the server
+        var json_dat1 = {user: 'shit', pass: 'dick', time: 'month'};
         $.ajax({
           type: "POST",
           contentType: "application/json; charset=utf-8",
           url: "receiver",
-          data: JSON.stringify(json_dat),
+          data: JSON.stringify(json_dat1),
           success: function (data) {
               console.log(data.user);
               console.log(data.pass);
           },
-          dataType: "json"
+          // dataType: "json"
           });
       //   $.post("receiver", json_name, function(){
       //   });
