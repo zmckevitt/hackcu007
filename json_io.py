@@ -44,9 +44,10 @@ def worker():
     # return result
 
     data = request.get_json()
-    print(data['title'])
     print(request)
-    return data['title']
+    string_dat = "fname: " + data['title'] + "lname: " + data['article'] + "time: " + data['time']
+    print(string_dat)
+    return string_dat
     # data = request.json
     # print("data is " + format(data))
     # return redirect('localhost:5020/receiver')
