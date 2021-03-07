@@ -40,26 +40,8 @@ def func(user,time_range):
             else:
                 top_G.append(ret[i][3][j])
                 num.append(1)
-    file1 = open("poop.txt","w")
-    newline = '\n'
-    max_value = max(num)
-    max_index = num.index(max_value)
-    file1.write(top_G[max_index])
-    file1.write(newline)
-    num.pop(max_index)
-    top_G.pop(max_index)
-    max_value_2 = max(num)
-    max_index = num.index(max_value_2)
-    file1.write(top_G[max_index])
-    file1.write(newline)
-    num.pop(max_index)
-    top_G.pop(max_index)
-    max_value_3 = max(num)
-    max_index = num.index(max_value_3)
-    file1.write(top_G[max_index])
-    file1.write(newline)
-    num.pop(max_index)
-    top_G.pop(max_index)
+    file1 = open("txt_files/out.txt","w")
+
      
     topS=[]
     topA=[]
@@ -89,24 +71,6 @@ def func(user,time_range):
     for i in range(0,10):
         topE.append(ret[i][0])
 
-
-    tot_valence = 0
-    avg_valence = 0
-    # finding how sad the person is
-    for i in range (0,len1-1):
-        tot_valence += ret[i][4][9][1]
-    avg_valence = tot_valence/len1
-    sad_string = ""
-    if(avg_valence < 0.25):
-        sad_string = "... see a therapist." + '\n'
-    elif(avg_valence < 0.5):
-        sad_string = "Your music's on the sadder side, but we're sure you'll be fine" + '\n'
-    elif(avg_valence < 0.75):
-        sad_string = "Your music seems on the happier side, we'd be on the happier side if you venmoed ;)" + '\n'
-    elif(avg_valence < 1):
-        sad_string = "Your music is a little too happy. Might want to settle down a little" + '\n'
-    file1.write(sad_string)
-
     for i in range(0,10):
         temp=str(topS[i])+'\n'
         file1.write(temp)
@@ -119,5 +83,45 @@ def func(user,time_range):
     for i in range(0,10):
         temp=str(topE[i])+'\n'
         file1.write(temp)
+    
+    newline = '\n'
+    max_value = max(num)
+    max_index = num.index(max_value)
+    file1.write(top_G[max_index])
+    file1.write(newline)
+    num.pop(max_index)
+    top_G.pop(max_index)
+    max_value_2 = max(num)
+    max_index = num.index(max_value_2)
+    file1.write(top_G[max_index])
+    file1.write(newline)
+    num.pop(max_index)
+    top_G.pop(max_index)
+    max_value_3 = max(num)
+    max_index = num.index(max_value_3)
+    file1.write(top_G[max_index])
+    file1.write(newline)
+    num.pop(max_index)
+    top_G.pop(max_index)
+
+
+    tot_valence = 0
+    avg_valence = 0
+    # finding how sad the person is
+    for i in range (0,len1-1):
+        tot_valence += ret[i][4][9][1]
+    avg_valence = tot_valence/len1
+    sad_string = ""
+    if(avg_valence < 0.25):
+        sad_string = "... see a therapist."
+    elif(avg_valence < 0.5):
+        sad_string = "Your music's on the sadder side, but we're sure you'll be fine"
+    elif(avg_valence < 0.75):
+        sad_string = "Your music seems on the happier side, we'd be on the happier side if you venmoed ;)" 
+    elif(avg_valence < 1):
+        sad_string = "Your music is a little too happy. Might want to settle down a little"
+    file1.write(sad_string)
+
+
     return ret
 func('a','medium_term')

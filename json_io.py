@@ -72,7 +72,7 @@ def worker():
 def redirected():
     #need to read file to determine arguments
     #call kwarg generator function
-    kwargs = gen_kwargs(31)
+    kwargs = gen_kwargs(43)
     #, **kwargs
     return render_template("redirect.html", **kwargs)
 
