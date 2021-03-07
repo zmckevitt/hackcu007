@@ -7,6 +7,9 @@ app = Flask(__name__, template_folder="templates")
 python_file = 'spotify_data.py'
 _fname = 'out.txt'
 
+uname_old = 'zackagawea10'
+uname_new = ''
+
 #add port variable
 
 def query_pipe(arg1, arg2):
@@ -21,15 +24,18 @@ def query_pipe(arg1, arg2):
     proc.communicate()    
 
 def remove_cache(uname):
-    timeoutInSeconds = 1                                                                     # Our timeout value.
-    cmd   =  'rm -r .cache-' + uname                                                         # Your desired command.
-    proc  =  subprocess.Popen(cmd,shell=True)                                                # Starting main process.
-    timeStarted = time.time()                                                                # Save start time.
-    cmdTimer     =  "sleep "+str(timeoutInSeconds)                                           # Waiting for timeout...
-    cmdKill      =  "kill "+str(proc.pid)+" 2>/dev/null"                                     # And killing process.
-    cmdTimeout   =  cmdTimer+" && "+cmdKill                                                  # Combine commands above.
-    procTimeout  =  subprocess.Popen(cmdTimeout,shell=True)                                  # Start timeout process.
-    proc.communicate()    
+    try:
+        timeoutInSeconds = 1                                                                     # Our timeout value.
+        cmd   =  'rm -r .cache-' + uname                                                         # Your desired command.
+        proc  =  subprocess.Popen(cmd,shell=True)                                                # Starting main process.
+        timeStarted = time.time()                                                                # Save start time.
+        cmdTimer     =  "sleep "+str(timeoutInSeconds)                                           # Waiting for timeout...
+        cmdKill      =  "kill "+str(proc.pid)+" 2>/dev/null"                                     # And killing process.
+        cmdTimeout   =  cmdTimer+" && "+cmdKill                                                  # Combine commands above.
+        procTimeout  =  subprocess.Popen(cmdTimeout,shell=True)                                  # Start timeout process.
+        proc.communicate()    
+    except:
+        print("No cache file to delete")
 
 def read_file(fname):
     f = open("txt_files/"+fname, "r")
@@ -54,19 +60,23 @@ def output():
 
 @app.route('/receiver', methods = ['GET','POST'])
 def worker():
+    global uname_old
+    global uname_new
     data = request.get_json()
     print(request)
     arg1 = data['title']
     arg2 = data['time']
+    uname_new = arg1
+    arg1 = uname_old
     string_dat = "uname: " + arg1 + " time: " + arg2
     query_pipe(arg1, arg2)
-    #input()
-    try:
+    if(arg1 != ''):
         remove_cache(arg1)
-    except:
-        pass
+    else:
+        uname_new = uname_old
+        uname_old = uname_new
+
     print(string_dat)
-    # return string_dat
     return redirect("/redirect")
 
 @app.route("/redirect")
