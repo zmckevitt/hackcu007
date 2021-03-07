@@ -1,7 +1,23 @@
+from __future__ import print_function
 import spotipy
 import spotipy.util as util
+import sys
+import os
+from spotipy.oauth2 import SpotifyClientCredentials
+
+if len(sys.argv) > 2:
+    username = sys.argv[1]
+    time = sys.argv[2]
+else:
+    print("Usage: %s username" % (sys.argv[0],))
+    sys.exit()
+
+os.environ["SPOTIPY_CLIENT_ID"] = "7e9f9c2e77b64e66a6c20b5b3eb7b479"
+os.environ["SPOTIPY_CLIENT_SECRET"] = "c4bb8e27f686455182b644fb10b61d6e"
+# os.environ["SPOTIPY_REDIRECT_URI"] = "http://localhost:7777/callback”
+
+
 def func(user,time_range):
-    username='31exjzvo2nlf4xdgeffjq3ndafwq'
     client_id='7e9f9c2e77b64e66a6c20b5b3eb7b479'
     client_secret='c4bb8e27f686455182b644fb10b61d6e'
     ret=[]
@@ -12,6 +28,15 @@ def func(user,time_range):
                                    client_id=client_id,   
                                    client_secret=client_secret,     
                                    redirect_uri=redirect_uri)
+    
+
+    if(time == 'week'):
+        time_range = 'short_term'
+    if(time == 'month'):
+        time_range = 'medium_term'
+    if(time == 'year'):
+        time_range = 'long_term'
+
     sp = spotipy.Spotify(auth=token)
     
     top_tracks = sp.current_user_top_tracks(limit=20, offset=0, time_range=time_range)
@@ -124,4 +149,4 @@ def func(user,time_range):
 
 
     return ret
-func('a','medium_term')
+func('a','time')
