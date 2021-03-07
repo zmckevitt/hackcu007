@@ -9,6 +9,10 @@
       window.onload = function() {
           // setup the button click
         document.getElementById("button1").onclick = function() {
+            //build json here w/ all values from the form
+            //var name = document.getElementById("fname").value
+            // var json_dat = {title: 'peen', article: 'test'}
+            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
             var lname = document.forms['myform'].elements['lname'].value;
             var json_dat = {title: name, article: lname, time: 'week'};
@@ -16,6 +20,10 @@
         };
 
         document.getElementById("button2").onclick = function() {
+            //build json here w/ all values from the form
+            //var name = document.getElementById("fname").value
+            // var json_dat = {title: 'peen', article: 'test'}
+            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
             var lname = document.forms['myform'].elements['lname'].value;
             var json_dat = {title: name, article: lname, time: 'month'};
@@ -23,42 +31,78 @@
         };
 
         document.getElementById("button3").onclick = function() {
+            //build json here w/ all values from the form
+            //var name = document.getElementById("fname").value
+            // var json_dat = {title: 'peen', article: 'test'}
+            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
             var lname = document.forms['myform'].elements['lname'].value;
             var json_dat = {title: name, article: lname, time: 'year'};
             doWork(json_dat)
         };
       }
+    //   function click() {
+    //     var name = document.forms['myform'].elements['fname'].value;
+    //     var json_dat = {title: name, article: 'test'}
+    //     doWork(json_dat)
+    //   }
       function doWork(json_dat) {
           // ajax the JSON to the server
-
           $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "receiver",
             data: JSON.stringify(json_dat),
             success: function (data) {
-                document.location.href='/redirect'
+              document.location.href='/redirect'
             },
             dataType: "html"
             });
           // stop link reloading the page
        event.preventDefault();
+       //window.location.href = "redirect.html";
       }
       </script>
 </head>
-    <body>
-        This will send data using AJAX to Python:<br /><br />
+
+        <h1 h2 font-size:16px; style="color: rgb(252, 156, 249);"><center>SpotiPy for the Guys</h1><br /><br />
+          <h2 style="background-color:rgb(30 215 96) ;">
+             <body style="background-color:rgb(25 20 20);text-align:center">
+
+           <body>
+             <br>
+           <marquee direction="down" width="900" height="50" behavior="alternate" style="border:hollow">
+           <marquee behavior="alternate">
+           We will not steal your information
+           </marquee>
+           </marquee>
 
       <form id="myform">
-        <label for="fname">First name:</label><br>
+
+        <label for="fname">Email Address:</label><br>
         <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last name:</label><br>
+        <label for="lname">Password:</label><br>
         <input type="text" id="lname" name="lname"><br>
       </form>
 
-      <input type="button" value="Week" id="button1">
-      <input type="button" value="Month" id="button2">
-      <input type="button" value="Year" id="button3">
+      <input style="width: 40%; height: 40%;" type="button" value="Week" id="button1">
+      <input style="width: 40%; height: 40%;" type="button" value="Month" id="button2">
+      <input style="width: 40%; height: 40%;" type="button" value="Year" id="button3">
+      <marquee direction="up"  height="200">Your information is safe with us</marquee>
 
+      <form action="https://google.com">
+    <input type="submit" value="Home" />
+</form>
+<form action="https://google.com">
+<input type="submit" value="Contact" />
+</form>
+<form action="https://google.com">
+<input type="submit" value="About" />
+<br>
+<span style="float:right">Venmo @Shreeyash_Nadella</span><br/>
+<span style="float:right">Venmo @Zack_McKevitt</span><br/>
+<span style="float:right ; color: rgb(192, 192, 192);">Venmo @Ethanschultz555<br/>
+<span style="float:right">Venmo @TrevorPetersonCOCA</span><br/>
+
+</form>
     </body>
