@@ -1,6 +1,6 @@
 # hackcu007 README
 
-##Inspiration:
+## Inspiration:
 The inspiration for this assignment came from the Spotify rapports on your yearly music habits. We all really liked this idea and we were wondering if there was some way to get more updates. We googled if Spotify had an API and it did. Our next steps were to see if we could use python with the API and luckily we found Spotipy. Now we had our project in mind and all we had to do is create the website to host our python script.
 
 ## What it does
