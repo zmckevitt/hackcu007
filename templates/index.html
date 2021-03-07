@@ -9,43 +9,24 @@
       window.onload = function() {
           // setup the button click
         document.getElementById("button1").onclick = function() {
-            //build json here w/ all values from the form
-            //var name = document.getElementById("fname").value
-            // var json_dat = {title: 'peen', article: 'test'}
-            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
-            var lname = document.forms['myform'].elements['lname'].value;
-            var json_dat = {title: name, article: lname, time: 'week'};
+            var json_dat = {title: name, time: 'week'};
             doWork(json_dat)
         };
 
         document.getElementById("button2").onclick = function() {
-            //build json here w/ all values from the form
-            //var name = document.getElementById("fname").value
-            // var json_dat = {title: 'peen', article: 'test'}
-            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
-            var lname = document.forms['myform'].elements['lname'].value;
-            var json_dat = {title: name, article: lname, time: 'month'};
+            var json_dat = {title: name, time: 'month'};
             doWork(json_dat)
         };
 
         document.getElementById("button3").onclick = function() {
-            //build json here w/ all values from the form
-            //var name = document.getElementById("fname").value
-            // var json_dat = {title: 'peen', article: 'test'}
-            // doWork(json_dat)
             var name = document.forms['myform'].elements['fname'].value;
-            var lname = document.forms['myform'].elements['lname'].value;
-            var json_dat = {title: name, article: lname, time: 'year'};
+            var json_dat = {title: name, time: 'year'};
             doWork(json_dat)
         };
       }
-    //   function click() {
-    //     var name = document.forms['myform'].elements['fname'].value;
-    //     var json_dat = {title: name, article: 'test'}
-    //     doWork(json_dat)
-    //   }
+
       function doWork(json_dat) {
           // ajax the JSON to the server
           $.ajax({
@@ -60,7 +41,6 @@
             });
           // stop link reloading the page
        event.preventDefault();
-       //window.location.href = "redirect.html";
       }
       </script>
 </head>
@@ -71,7 +51,7 @@
 
            <body>
              <br>
-           <marquee direction="down" width="900" height="50" behavior="alternate" style="border:hollow">
+            <marquee direction="down" width="900" height="50" behavior="alternate" style="border:hollow; color:rgb(255,7,58);">
            <marquee behavior="alternate">
            We will not steal your information
            </marquee>
@@ -81,28 +61,22 @@
 
         <label for="fname">Email Address:</label><br>
         <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Password:</label><br>
-        <input type="text" id="lname" name="lname"><br>
       </form>
 
-      <input style="width: 40%; height: 40%;" type="button" value="Week" id="button1">
-      <input style="width: 40%; height: 40%;" type="button" value="Month" id="button2">
-      <input style="width: 40%; height: 40%;" type="button" value="Year" id="button3">
+      <input style="width: 40%; height: 40%;" type="button" value="Short Term" id="button1">
+      <input style="width: 40%; height: 40%;" type="button" value="Medium Term" id="button2">
+      <input style="width: 40%; height: 40%;" type="button" value="Long Term" id="button3">
       <marquee direction="up"  height="200">Your information is safe with us</marquee>
 
-      <form action="https://google.com">
-    <input type="submit" value="Home" />
-</form>
-<form action="https://google.com">
-<input type="submit" value="Contact" />
-</form>
-<form action="https://google.com">
-<input type="submit" value="About" />
-<br>
+      <!-- <a href="index.html"><button>Home</button></a>
+      <a href="contact.html"><button>Contact</button></a>
+      <a href="about.html"><button>About</button></a> -->
+<br/>
 <span style="float:right">Venmo @Shreeyash_Nadella</span><br/>
+
 <span style="float:right">Venmo @Zack_McKevitt</span><br/>
 <span style="float:right ; color: rgb(192, 192, 192);">Venmo @Ethanschultz555<br/>
 <span style="float:right">Venmo @TrevorPetersonCOCA</span><br/>
 
-</form>
+
     </body>
